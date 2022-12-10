@@ -1,0 +1,60 @@
+from tkinter import *
+from tkinter import messagebox
+from PIL import ImageTk,Image
+
+
+
+root = Tk()
+
+
+root.geometry("300x250")
+root.config(bg = 'teal')
+root.resizable(width=True,height=True)
+root.title('Lather')
+root.iconbitmap('c:/Users/Becca/Pictures/youre-booked-85781203.jpg')
+
+Tk_label = Label(root, text="Welcome to Lather", bg = 'teal', fg = 'white')
+
+#r = IntVar()
+
+def open():
+    global my_img
+    top = Toplevel()
+    top.title('Appointment Booked!')
+    top.iconbitmap('c:/Users/Becca/Pictures/youre-booked-85781203.jpg')
+    my_img = ImageTk.PhotoImage(Image.open('c:/Users/Becca/Pictures/youre-booked-85781203.jpg'))
+    my_label = Label(top, image = my_img).pack()
+
+MODES = [
+    ('Wash','Wash'),
+    ('Cut','Cut'),
+    ('Dye','Dye'),
+    ('Wax','Wax'),
+]
+salon = StringVar()
+salon.set("Wash")
+
+
+
+name_label = Label(root, text="Please Enter Your Name: ", bg = 'teal', fg = 'white')
+name_entry = Entry(root, font=('Arial',10,))
+button_label = Label(root, text = 'Services', bg = 'teal', fg = 'white')
+
+
+
+
+
+
+name_label.pack()
+name_entry.pack()
+button_label.pack()
+for text, mode in MODES:
+    Radiobutton(root, text = text, variable = salon, value = mode).pack()
+
+
+button_book = Button(root, text = 'Book Appointment', command = open).pack()
+
+button_quit = Button(root, text = 'Exit Program', command = root.quit).pack()
+
+
+root.mainloop()
