@@ -7,16 +7,135 @@ from PIL import ImageTk,Image
 root = Tk()
 
 
-root.geometry("300x250")
+root.geometry("400x400")
 root.config(bg = 'teal')
 root.resizable(width=True,height=True)
 root.title('Lather')
-root.iconbitmap('c:/Users/Becca/Pictures/youre-booked-85781203.jpg')
+
 
 Tk_label = Label(root, text="Welcome to Lather", bg = 'teal', fg = 'white')
+Tk_label.grid(row = 0, column = 2)
 
-#r = IntVar()
 
+#Define image
+bg = ImageTk.PhotoImage(Image.open(r'C:/Users/Becca/Pictures/salonbanner.jpg'))
+
+#Create a label
+my_label = Label(root, image = bg)
+my_label.place(x = 0, y = 0, relwidth = 1, relheight = 1)
+
+
+
+#Creates text box
+
+def name():
+    try:
+        int(my_box.get())
+        answer.config(text = 'Please Only Enter Letters', bg = 'purple', fg = 'white')
+    except ValueError:
+        answer.config(text = "Name Submitted", bg = 'purple', fg = 'white')
+    
+
+text_label = Label(root, text="Please Enter Your Name: ", bg = 'purple', fg = 'white')
+text_label.grid(row = 0, column = 0)
+
+my_box = Entry(root)
+my_box.grid(row = 0, column = 1)
+my_box.insert(0, 'Enter your name')
+
+
+my_button = Button(root, text = 'Submit', bg = 'purple', fg= 'white', command = name)
+my_button.grid(row = 0, column = 2)#last edited
+
+answer = Label(root, bg = 'purple', fg = 'white')
+answer.grid(row = 6, column = 1)
+
+#Defines preview button for services
+def show():
+    myLabel = Label(root, bg = 'purple', fg = 'white', text = service.get())
+    myLabel.grid(row = 7, column = 1)
+
+
+#Sets drop down menu to select services
+button_label = Label(root, text = 'Services', bg = 'purple', fg = 'white')
+button_label.grid(row = 1, column = 0)
+service = StringVar()
+service.set('Wash')
+
+drop = OptionMenu(root, service, 'Wash', 'Cut', 'Dye', 'Wax')
+drop.grid(row = 1, column = 1)
+
+#Preview button for services
+myButton = Button(root, text = 'Preview', bg = 'purple', fg= 'white', command = show)
+myButton.grid(row = 1, column = 2)
+
+#Defines preview button for stylist
+def show():
+    myLabel = Label(root, bg = 'purple', fg = 'white', text = stylist.get())
+    myLabel.grid(row = 8, column = 1)
+
+#Sets drop down menu to select stylist
+button_label = Label(root, text = 'Stylists', bg = 'purple', fg = 'white')
+button_label.grid(row = 2, column = 0)
+stylist = StringVar()
+stylist.set('Lisa')
+
+drop = OptionMenu(root, stylist, 'Lisa', 'Monica', 'Darcy', 'Paul')
+drop.grid(row = 2, column = 1)
+
+
+#Preview button for stylist
+myButton = Button(root, text = 'Preview', bg = 'purple', fg= 'white', command = show)
+myButton.grid(row = 2, column = 2)
+
+
+#Defines preview button for appointment
+def show():
+    myLabel = Label(root, bg = 'purple', fg = 'white', text = appointment.get())
+    myLabel.grid(row = 9, column = 1)
+
+#Label for month appointment
+button_label = Label(root, text = 'Appointment Date', bg = 'purple', fg = 'white')
+button_label.grid(row = 3, column = 0)
+
+#Set month of appointment
+appointment = StringVar()
+appointment.set('December 1')
+
+#Drop box for month
+drop = OptionMenu(root, appointment, 'December 1', 'December 5', 'December 9', 'December 12', 'December 16', 'December 18', 'December 22','December 29' , 'December 31')
+drop.grid(row = 3, column = 1)
+
+
+#Preview button for appointment
+myButton = Button(root, text = 'Preview', bg = 'purple', fg= 'white', command = show)
+myButton.grid(row = 3, column = 2)
+
+
+#Defines preview button for time
+def show():
+    myLabel = Label(root, bg = 'purple', fg = 'white', text = time.get())
+    myLabel.grid(row = 10, column = 1)
+
+#Sets time for appointment
+button_label = Label(root, text = 'Appointment Time', bg = 'purple', fg = 'white')
+button_label.grid(row = 4, column = 0)
+
+#Sets time for appointment(hour)
+time = StringVar()
+time.set('1:00 PM')
+
+drop = OptionMenu(root, time, '1:00 PM', '1:20 PM', '1:40 PM', '3:25 PM', '4:00 PM', '4:30 PM', '6:00 PM')
+drop.grid(row = 4, column = 1)
+
+#Preview button for appointment
+myButton = Button(root, text = 'Preview', bg = 'purple', fg= 'white', command = show)
+myButton.grid(row = 4, column = 2) #Last item edited
+
+
+    
+
+#Second window "You're booked! image"
 def open():
     global my_img
     top = Toplevel()
@@ -25,36 +144,13 @@ def open():
     my_img = ImageTk.PhotoImage(Image.open('c:/Users/Becca/Pictures/youre-booked-85781203.jpg'))
     my_label = Label(top, image = my_img).pack()
 
-MODES = [
-    ('Wash','Wash'),
-    ('Cut','Cut'),
-    ('Dye','Dye'),
-    ('Wax','Wax'),
-]
-salon = StringVar()
-salon.set("Wash")
 
-
-
-name_label = Label(root, text="Please Enter Your Name: ", bg = 'teal', fg = 'white')
-name_entry = Entry(root, font=('Arial',10,))
-button_label = Label(root, text = 'Services', bg = 'teal', fg = 'white')
-
-
-
-
-
-
-name_label.pack()
-name_entry.pack()
-button_label.pack()
-for text, mode in MODES:
-    Radiobutton(root, text = text, variable = salon, value = mode).pack()
-
-
-button_book = Button(root, text = 'Book Appointment', command = open).pack()
-
-button_quit = Button(root, text = 'Exit Program', command = root.quit).pack()
+#Sets button to book appointment
+button_book = Button(root, text = 'Book Appointment', bg = 'purple', fg= 'white', command = open)
+button_book.grid(row = 12, column = 1, columnspan = 1)
+#Quit button
+button_quit = Button(root, text = 'Exit Program', bg = 'purple', fg= 'white', command = root.quit)
+button_quit.grid(row = 12, column = 2, columnspan = 2)
 
 
 root.mainloop()
