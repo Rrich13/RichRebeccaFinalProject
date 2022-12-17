@@ -6,15 +6,12 @@ from PIL import ImageTk,Image
 
 root = Tk()
 
-
+#Create Workspace
 root.geometry("400x400")
 root.config(bg = 'teal')
 root.resizable(width=True,height=True)
 root.title('Lather')
 
-
-Tk_label = Label(root, text="Welcome to Lather", bg = 'teal', fg = 'white')
-Tk_label.grid(row = 0, column = 2)
 
 
 #Define image
