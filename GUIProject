@@ -18,43 +18,43 @@ root.title('Lather')
 bg = ImageTk.PhotoImage(Image.open(r'C:/Users/Becca/Pictures/salonbanner.jpg'))
 
 #Create a label
-my_label = Label(root, image = bg)
+my_label = Label(root, image = bg) #Label
 my_label.place(x = 0, y = 0, relwidth = 1, relheight = 1)
 
 
 
 #Creates text box
 
-def name():
+def name():#Input validation
     try:
         int(my_box.get())
-        answer.config(text = 'Please Only Enter Letters', bg = 'purple', fg = 'white')
+        answer.config(text = 'Please Only Enter Letters', bg = 'purple', fg = 'white')#Displays when numbers are entered
     except ValueError:
-        answer.config(text = "Name Submitted", bg = 'purple', fg = 'white')
+        answer.config(text = "Name Submitted", bg = 'purple', fg = 'white')#Displays when Letters are entered
     
 
-text_label = Label(root, text="Please Enter Your Name: ", bg = 'purple', fg = 'white')
+text_label = Label(root, text="Please Enter Your Name: ", bg = 'purple', fg = 'white')#Label
 text_label.grid(row = 0, column = 0)
 
 my_box = Entry(root)
 my_box.grid(row = 0, column = 1)
 my_box.insert(0, 'Enter your name')
 
+#Shows if the input is valid when button is clicked
+my_button = Button(root, text = 'Submit', bg = 'purple', fg= 'white', command = name)#Call Back/ Button
+my_button.grid(row = 0, column = 2)#last line edited
 
-my_button = Button(root, text = 'Submit', bg = 'purple', fg= 'white', command = name)
-my_button.grid(row = 0, column = 2)#last edited
-
-answer = Label(root, bg = 'purple', fg = 'white')
+answer = Label(root, bg = 'purple', fg = 'white')#Label
 answer.grid(row = 6, column = 1)
 
 #Defines preview button for services
-def show():
-    myLabel = Label(root, bg = 'purple', fg = 'white', text = service.get())
+def show():#Shows the option picked when button is clicked
+    myLabel = Label(root, bg = 'purple', fg = 'white', text = service.get())#Label
     myLabel.grid(row = 7, column = 1)
 
 
 #Sets drop down menu to select services
-button_label = Label(root, text = 'Services', bg = 'purple', fg = 'white')
+button_label = Label(root, text = 'Services', bg = 'purple', fg = 'white')#Label
 button_label.grid(row = 1, column = 0)
 service = StringVar()
 service.set('Wash')
@@ -63,16 +63,16 @@ drop = OptionMenu(root, service, 'Wash', 'Cut', 'Dye', 'Wax')
 drop.grid(row = 1, column = 1)
 
 #Preview button for services
-myButton = Button(root, text = 'Preview', bg = 'purple', fg= 'white', command = show)
+myButton = Button(root, text = 'Preview', bg = 'purple', fg= 'white', command = show)#Call Back/Button
 myButton.grid(row = 1, column = 2)
 
 #Defines preview button for stylist
-def show():
-    myLabel = Label(root, bg = 'purple', fg = 'white', text = stylist.get())
+def show():#Shows the option picked when button is clicked
+    myLabel = Label(root, bg = 'purple', fg = 'white', text = stylist.get())#Label
     myLabel.grid(row = 8, column = 1)
 
 #Sets drop down menu to select stylist
-button_label = Label(root, text = 'Stylists', bg = 'purple', fg = 'white')
+button_label = Label(root, text = 'Stylists', bg = 'purple', fg = 'white')#Label
 button_label.grid(row = 2, column = 0)
 stylist = StringVar()
 stylist.set('Lisa')
@@ -82,17 +82,17 @@ drop.grid(row = 2, column = 1)
 
 
 #Preview button for stylist
-myButton = Button(root, text = 'Preview', bg = 'purple', fg= 'white', command = show)
+myButton = Button(root, text = 'Preview', bg = 'purple', fg= 'white', command = show)#Call Back/Button
 myButton.grid(row = 2, column = 2)
 
 
 #Defines preview button for appointment
-def show():
-    myLabel = Label(root, bg = 'purple', fg = 'white', text = appointment.get())
+def show():#Shows the option picked when button is clicked
+    myLabel = Label(root, bg = 'purple', fg = 'white', text = appointment.get())#Label
     myLabel.grid(row = 9, column = 1)
 
 #Label for month appointment
-button_label = Label(root, text = 'Appointment Date', bg = 'purple', fg = 'white')
+button_label = Label(root, text = 'Appointment Date', bg = 'purple', fg = 'white')#Label
 button_label.grid(row = 3, column = 0)
 
 #Set month of appointment
@@ -105,12 +105,12 @@ drop.grid(row = 3, column = 1)
 
 
 #Preview button for appointment
-myButton = Button(root, text = 'Preview', bg = 'purple', fg= 'white', command = show)
+myButton = Button(root, text = 'Preview', bg = 'purple', fg= 'white', command = show)#Call Back
 myButton.grid(row = 3, column = 2)
 
 
 #Defines preview button for time
-def show():
+def show():#Shows the option picked when button is clicked
     myLabel = Label(root, bg = 'purple', fg = 'white', text = time.get())
     myLabel.grid(row = 10, column = 1)
 
@@ -126,14 +126,12 @@ drop = OptionMenu(root, time, '1:00 PM', '1:20 PM', '1:40 PM', '3:25 PM', '4:00 
 drop.grid(row = 4, column = 1)
 
 #Preview button for appointment
-myButton = Button(root, text = 'Preview', bg = 'purple', fg= 'white', command = show)
+myButton = Button(root, text = 'Preview', bg = 'purple', fg= 'white', command = show)#Call Back
 myButton.grid(row = 4, column = 2) #Last item edited
 
 
-    
-
 #Second window "You're booked! image"
-def open():
+def open():#Opens a second window that displays an image when button is clicked
     global my_img
     top = Toplevel()
     top.title('Appointment Booked!')
@@ -143,10 +141,10 @@ def open():
 
 
 #Sets button to book appointment
-button_book = Button(root, text = 'Book Appointment', bg = 'purple', fg= 'white', command = open)
+button_book = Button(root, text = 'Book Appointment', bg = 'purple', fg= 'white', command = open)#Call Back/Button
 button_book.grid(row = 12, column = 1, columnspan = 1)
 #Quit button
-button_quit = Button(root, text = 'Exit Program', bg = 'purple', fg= 'white', command = root.quit)
+button_quit = Button(root, text = 'Exit Program', bg = 'purple', fg= 'white', command = root.quit)#Button
 button_quit.grid(row = 12, column = 2, columnspan = 2)
 
 
